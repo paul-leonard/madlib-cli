@@ -21,4 +21,5 @@ A template story is used from a provided text file.  The text file is read in an
 ## Credits and Collaborations
 - Thanks to the SoloLearn Python Course for teaching me the basics to use in this app
 - Thanks to the team at Code Fellows for getting me started on my third use of Python!
-- 
+- Thanks to classmates I discussed and conferred with:  Alex, Bhagirath, Taylor, Lee, Hexx, and Seth
+- Additional thanks to Skyler and JB for some pointers I heard them giving out.
