@@ -31,3 +31,4 @@ A template story is used from a provided text file.  The text file is read in an
 - [Python.org docs on re.finditer, thought about using instead of findall](https://docs.python.org/3/library/re.html)
 - [Google docs section on substitution using regex](https://developers.google.com/edu/python/regular-expressions)
 - [replace guidance for merge function](https://note.nkmk.me/en/python-str-replace-translate-re-sub/)
+- [append instead of push in python](https://www.programiz.com/python-programming/methods/list/append)

@@ -62,9 +62,11 @@ template_file_string = read_template(path)
 
 #parse it
 useable_template = parse(template_file_string)
-print(useable_template)
 
 #prompt user for words
+user_words = []
+for word_request in useable_template[1]:
+  user_words.append(input(f"Please enter a {word_request}. > "))
 
 #merge the story
 story = "The finished story will go here in the future."
