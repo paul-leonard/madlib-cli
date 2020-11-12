@@ -4,7 +4,7 @@
 [x] Read a template Madlib file (Example), and parse that file into usable parts.
 You need to decide what components of this file are useful, and how to break those useful pieces apart
 [x] Once you know what parts of the template need user input, such as "Adjective", prompt the user to submit a series of words to fit each of the required components of the Madlib template.
-[ ] With the collected user inputs, populate the template such that each provided input is placed into the correct position within the template.
+[x] With the collected user inputs, populate the template such that each provided input is placed into the correct position within the template.
 [x] After the resulting Madlib has been completed, provide the completed response back to the user in the command line.
 [x] Write the completed template (Example)to a new file on your file system (in the repo).'''
 
@@ -33,20 +33,23 @@ def parse(template_string):
 
 def merge(bare_template, user_words):
   '''This function takes in the empty template story and the inputted user's words and creates a new string of the story.'''
-#string_to_find_and_replace = '{}'
-#for string_to_replace_it_with in players_words
-  #include optional third agrgument to say to only replace the first set of '{}'
-  #output_string = input_string.replace(string_to_find_and_replace, string_to_replace_it_with, 1)
-  #since strings are immuatable... it may be better to do this as a function to pass the new string back in
+  output_string = bare_template
+  string_to_find_and_replace = '{}'
+  for string_to_replace_it_with in user_words:
+    #include optional third agrgument to say to only replace the first set of '{}'
+    output_string = output_string.replace(string_to_find_and_replace, string_to_replace_it_with, 1)
+    #since strings are immuatable... it may be better to do this as a function to pass the new string back in
+  return output_string
 
-  return """Make Me A Video Game!\n\nI the {Adjective} and {Adjective} {A First Name} have {Past Tense Verb}{A First Name}'s {Adjective} sister and plan to steal her {Adjective} {Plural Noun}!\n\nWhat are a {Large Animal} and backpacking {Small Animal} to do? Before you can help {A Girl's Name}, you'll have to collect the {Adjective} {Plural Noun} and {Adjective} {Plural Noun} that open up the {Number 1-50} worlds connected to A {First Name's} Lair. There are {Number} {Plural Noun} and {Number} {Plural Noun} in the game, along with hundreds of other goodies for you to find."""
+  #uncomment out below when testing:
+  #return """Make Me A Video Game!\n\nI the {Adjective} and {Adjective} {A First Name} have {Past Tense Verb}{A First Name}'s {Adjective} sister and plan to steal her {Adjective} {Plural Noun}!\n\nWhat are a {Large Animal} and backpacking {Small Animal} to do? Before you can help {A Girl's Name}, you'll have to collect the {Adjective} {Plural Noun} and {Adjective} {Plural Noun} that open up the {Number 1-50} worlds connected to A {First Name's} Lair. There are {Number} {Plural Noun} and {Number} {Plural Noun} in the game, along with hundreds of other goodies for you to find."""
 
 def write_story_to_file(story):
   '''This function writes the new story to a file on the repo so it may be enjoyed later.'''
   with open('assets/your_story.text','w') as new_file:
     new_file.write(story)
 
-#in place test that passed:
+#in place, the associated test that passed:
 #storytime = "this is a good one if it works!"
 #write_story_to_file(storytime)
 
@@ -65,14 +68,18 @@ useable_template = parse(template_file_string)
 #prompt user for words
 # tests for read_template and parse were working before the following three lines of code were added.  I do not know why.
 user_words = []
-#for word_request in useable_template[1]:
-#  user_words.append(input(f"Please enter a {word_request}. > "))
+for word_request in useable_template[1]:
+  user_words.append(input(f"Please enter a {word_request}. > "))
+
+print("\n\nLet... \n\nthe...\n\nsuspense...\n\nfor...\n\nyour...\n\nstory...\n\nbuild...\n\n")
 
 #merge the story
-story = "The finished story will go here in the future."
+story = merge(useable_template[0], user_words)
+#test line:  story = "The finished story will go here in the future."
 
 #print the story
 print(story)
+print("\n\n")
 
 #save the story
 write_story_to_file(story)
