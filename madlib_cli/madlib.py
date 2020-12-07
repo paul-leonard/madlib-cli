@@ -53,33 +53,35 @@ def write_story_to_file(story):
 #storytime = "this is a good one if it works!"
 #write_story_to_file(storytime)
 
-#variable definitions
-path = 'assets/template.txt'
-
-#execution
-print("""\n\n*************************************\n\nWelcome to the time of your life!!! IT IS TIME FOR MADLIBS!!!\n\nEnter a word for each type of word requested to reveal your fun new story!\n\n*************************************\n\n""")
-
-#open and read template file
-template_file_string = read_template(path)
-
-#parse it
-useable_template = parse(template_file_string)
-
-#prompt user for words
-# tests for read_template and parse were working before the following three lines of code were added.  I do not know why.
-user_words = []
-for word_request in useable_template[1]:
-  user_words.append(input(f"Please enter a {word_request}. > "))
-
-print("\n\nLet... \n\nthe...\n\nsuspense...\n\nfor...\n\nyour...\n\nstory...\n\nbuild...\n\n")
-
-#merge the story
-story = merge(useable_template[0], user_words)
-#test line:  story = "The finished story will go here in the future."
-
-#print the story
-print(story)
-print("\n\n")
-
-#save the story
-write_story_to_file(story)
+if __name__ == "__main__":
+  
+  #variable definitions
+  path = 'assets/template.txt'
+  
+  #execution
+  print("""\n\n*************************************\n\nWelcome to the time of your life!!! IT IS TIME FOR MADLIBS!!!\n\nEnter a word for each type of word requested to reveal your fun new  story!\n\n*************************************\n\n""")
+  
+  #open and read template file
+  template_file_string = read_template(path)
+  
+  #parse it
+  useable_template = parse(template_file_string)
+  
+  #prompt user for words
+  # tests for read_template and parse were working before the following three lines of code were added.  I do not know why.
+  user_words = []
+  for word_request in useable_template[1]:
+    user_words.append(input(f"Please enter a {word_request}. > "))
+  
+  print("\n\nLet... \n\nthe...\n\nsuspense...\n\nfor...\n\nyour...\n\nstory...\n\nbuild...\n\n")
+  
+  #merge the story
+  story = merge(useable_template[0], user_words)
+  #test line:  story = "The finished story will go here in the future."
+  
+  #print the story
+  print(story)
+  print("\n\n")
+  
+  #save the story
+  write_story_to_file(story)

@@ -10,15 +10,11 @@ The resolution to that dilemma is to break down your code so that it is more eas
 [x] Create and test a **parse** function that takes in a template string and returns a string with language parts removed and a separate list of those language parts.
 [ ] Create and test a **merge** function that takes in a “bare” template and a list of user entered language parts, and returns a string with the language parts inserted into the template.'''
 
-#from madlib_cli import __version__
+import pytest
+
 from madlib_cli.madlib import read_template
 from madlib_cli.madlib import parse
 from madlib_cli.madlib import merge
-
-
-# i don't know why this version test doesn't work in this module?
-#def test_version():
-#    assert __version__ == '0.1.0'
 
 
 def test_read_template():
@@ -31,8 +27,10 @@ def test_parse():
   expected = ["""Make Me A Video Game!\n\nI the {} and {} {} have {}{}'s {} sister and plan to steal her {} {}!\n\nWhat are a {} and backpacking {} to do? Before you can help {}, you'll have to collect the {} {} and {} {} that open up the {} worlds connected to A {} Lair. There are {} {} and {} {} in the game, along with hundreds of other goodies for you to find.""", ["Adjective","Adjective","A First Name","Past Tense Verb","A First Name","Adjective","Adjective","Plural Noun","Large Animal","Small Animal","A Girl's Name","Adjective","Plural Noun","Adjective","Plural Noun","Number 1-50","First Name's","Number","Plural Noun","Number","Plural Noun"]]
   assert actual == expected
 
-# I can't get this test to work.  I think it is a problem gettign it to go in as a string and the function call thinks the and's are logical?  I tried having them as defined variables before the function call... but errors were coming back saying the variables were not known at the time of use... so I think that you can't define variables ahead of test_function calls?
-def test_merge('''Make Me A Video Game!\n\nI the {} and {} {} have {}{}'s {} sister and plan to steal her {} {}!\n\nWhat are a {} and backpacking {} to do? Before you can help {}, you'll have to collect the {} {} and {} {} that open up the {} worlds connected to A {} Lair. There are {} {} and {} {} in the game, along with hundreds of other goodies for you to find.''', ["Adjective","Adjective","A First Name","Past Tense Verb","A First Name","Adjective","Adjective","Plural Noun","Large Animal","Small Animal","A Girl's Name","Adjective","Plural Noun","Adjective","Plural Noun","Number 1-50","First Name's","Number","Plural Noun","Number","Plural Noun"]):
+
+def test_merge():
+  bare_template = '''Make Me A Video Game!\n\nI the {} and {} {} have {}...'''
+  fake_user_words = ["Adjective","Adjective","A First Name","Past Tense Verb"]
   actual = merge(bare_template, fake_user_words)
-  expected = """Make Me A Video Game!\n\nI the {} and {} {} have {}{}'s {} sister and plan to steal her {} {}!\n\nWhat are a {} and backpacking {} to do? Before you can help {}, you'll have to collect the {} {} and {} {} that open up the {} worlds connected to A {} Lair. There are {} {} and {} {} in the game, along with hundreds of other goodies for you to find."""
+  expected = """Make Me A Video Game!\n\nI the Adjective and Adjective A First Name have Past Tense Verb..."""
   assert actual == expected
